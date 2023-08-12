@@ -23,6 +23,6 @@ public class CustomerDTO {
     @NotBlank(message = "email is required")
     @Email(message = "email is invalid")
     private String email;
-    private List<AddressDTO> addresses;
+
 
 }

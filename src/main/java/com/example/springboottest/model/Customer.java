@@ -1,7 +1,9 @@
 package com.example.springboottest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +14,10 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "uk_phoneNumber", columnNames = {"phoneNumber"}),
+        @UniqueConstraint(name = "uk_email", columnNames = {"email"})
+})
 public class Customer {
     @JsonIgnore
     @Id
@@ -22,9 +28,9 @@ public class Customer {
     private String firstName;
     @Column
     private String lastName;
-    @Column(unique = true)
+    @Column()
     private String phoneNumber;
-    @Column(unique = true)
+    @Column()
     private String email;
     @OneToMany
     @JoinColumn(name = "customer_id")
