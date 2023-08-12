@@ -1,4 +1,4 @@
-package com.example.kalvadtest.model;
+package com.example.springboottest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class Address {
 
 
     @ManyToOne
-    @JoinColumn(name = "cityId")
+    @JoinColumn(name = "city_id")
     private City city;
 
     @Column(length = 100)
@@ -29,13 +29,12 @@ public class Address {
     @JsonIgnore
 
     @ManyToOne
-    @JoinColumn(name = "customerId")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "address_type_id")
     private AddressType addressType;
-
 
 
     @Override

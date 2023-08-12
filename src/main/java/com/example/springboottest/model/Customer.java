@@ -1,15 +1,14 @@
-package com.example.kalvadtest.model;
+package com.example.springboottest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,7 +27,7 @@ public class Customer {
     @Column(unique = true)
     private String email;
     @OneToMany
-    @JoinColumn(name = "customerId")
+    @JoinColumn(name = "customer_id")
     private Set<Address> addresses;
 
 

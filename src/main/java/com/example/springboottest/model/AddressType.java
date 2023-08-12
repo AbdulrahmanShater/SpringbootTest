@@ -1,4 +1,4 @@
-package com.example.kalvadtest.model;
+package com.example.springboottest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table
 @Getter
 @Setter
 @NoArgsConstructor

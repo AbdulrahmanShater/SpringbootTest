@@ -1,17 +1,15 @@
-package com.example.kalvadtest.model;
+package com.example.springboottest.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
-@Table
 @Getter
 @Setter
 @NoArgsConstructor
