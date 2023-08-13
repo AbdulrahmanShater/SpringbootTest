@@ -11,8 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
-    final
-    CustomerService customerService;
+    final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
@@ -27,4 +26,10 @@ public class CustomerController {
     public List<CustomerResponseDTO> getCustomers() {
         return customerService.getCustomers();
     }
+
+    @GetMapping("/{id}")
+    public CustomerResponseDTO getCustomer(@PathVariable Long id) {
+        return customerService.getCustomerById(id);
+    }
+
 }

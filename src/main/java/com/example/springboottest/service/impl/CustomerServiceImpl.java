@@ -5,13 +5,10 @@ import com.example.springboottest.dto.CustomerResponseDTO;
 import com.example.springboottest.model.Customer;
 import com.example.springboottest.repository.CustomerRepository;
 import com.example.springboottest.service.CustomerService;
-import javassist.tools.web.BadHttpRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -36,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
             c.setAddresses(new ArrayList<>());
             return c;
         } catch (DataIntegrityViolationException ex) {
-            if (Objects.requireNonNull(ex.getMessage()).contains("uk_phonenumber")) {
+            if (Objects.requireNonNull(ex.getMessage()).contains("uk_phoneNumber")) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "phone number is exist", ex);
             } else if (Objects.requireNonNull(ex.getMessage()).contains("uk_email")) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email is exist", ex);
@@ -48,4 +45,10 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerResponseDTO> getCustomers() {
         return customerRepository.findAll().stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
     }
+
+
+    public CustomerResponseDTO getCustomerById(Long id) {
+        return modelMapper.map(customerRepository.findById(id), CustomerResponseDTO.class);
+    }
+
 }

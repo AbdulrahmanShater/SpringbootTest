@@ -9,5 +9,6 @@ import java.util.List;
 public interface CustomerService {
     CustomerDTO save(CustomerDTO customer);
     List<CustomerResponseDTO> getCustomers();
+    CustomerResponseDTO getCustomerById(Long id);
 
 }
