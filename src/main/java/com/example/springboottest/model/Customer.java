@@ -7,6 +7,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import java.util.Set;
 
@@ -24,13 +25,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String firstName;
-    @Column
+    @Column(nullable = false)
     private String lastName;
-    @Column()
+    @Column(nullable = false)
     private String phoneNumber;
-    @Column()
+    @Column(nullable = false)
     private String email;
     @OneToMany
     @JoinColumn(name = "customer_id")

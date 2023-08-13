@@ -17,7 +17,7 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, length = 60)
+    @Column(unique = true, length = 60,nullable = false)
     private String name;
     @JsonIgnore
     @OneToMany

@@ -22,20 +22,20 @@ public class Address {
 
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "city_id",nullable = false)
     private City city;
 
-    @Column(length = 100)
+    @Column(length = 100,nullable = false)
     private String addressLine;
 
     @JsonIgnore
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id",nullable = false)
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "address_type_id")
+    @JoinColumn(name = "address_type_id",nullable = false)
     private AddressType addressType;
 
 
