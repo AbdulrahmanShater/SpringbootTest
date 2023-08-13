@@ -9,10 +9,16 @@ import java.util.List;
 
 public interface CustomerService {
     CustomerResponseDTO save(CustomerDTO customer);
+
     List<CustomerResponseDTO> getCustomers();
+
     CustomerResponseDTO getCustomerById(Long id);
+
     CustomerResponseDTO addAddress(Long id, AddressDTO addressDto);
+
     String deleteAddress(Long id, Long addressId);
+
+    List<CustomerResponseDTO> getCustomersByCity(String name);
 
 
 }

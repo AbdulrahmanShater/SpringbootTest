@@ -91,4 +91,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
+    @Override
+    public List<CustomerResponseDTO> getCustomersByCity(String name) {
+        return customerRepository.findCustomersByCity(name).stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
+    }
+
 }
