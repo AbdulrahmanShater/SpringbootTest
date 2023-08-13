@@ -1,5 +1,6 @@
 package com.example.springboottest.controller;
 
+import com.example.springboottest.dto.AddressDTO;
 import com.example.springboottest.dto.CustomerDTO;
 import com.example.springboottest.dto.CustomerResponseDTO;
 import com.example.springboottest.service.CustomerService;
@@ -18,7 +19,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public CustomerDTO createCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
+    public CustomerResponseDTO createCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
         return customerService.save(customerDTO);
     }
 
@@ -30,6 +31,11 @@ public class CustomerController {
     @GetMapping("/{id}")
     public CustomerResponseDTO getCustomer(@PathVariable Long id) {
         return customerService.getCustomerById(id);
+    }
+
+    @PostMapping("/{id}/address")
+    public CustomerResponseDTO addCustomerAddress(@PathVariable Long id, @Valid @RequestBody AddressDTO addressDto) {
+        return customerService.addAddress(id, addressDto);
     }
 
 }
