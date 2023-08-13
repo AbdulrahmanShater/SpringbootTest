@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface AddressTypeRepository extends JpaRepository<AddressType, Long> {
 
 
-    Optional<AddressType> findByName(String addressType);
+    Optional<AddressType> findByNameIgnoreCase(String addressType);
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    @Query(value = "select customer.* from customer,address,city where city.name =?1 and address.city_id = city.id and customer.id = address.customer_id group by customer.id", nativeQuery = true)
+    @Query(value = "select customer.* from customer,address,city where LOWER(city.name) = LOWER(?1) and address.city_id = city.id and customer.id = address.customer_id group by customer.id", nativeQuery = true)
     List<Customer> findCustomersByCity(String name);
 
     List<Customer> findByPhoneNumberStartsWith(String prefix);

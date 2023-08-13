@@ -66,9 +66,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponseDTO addAddress(Long id, AddressDTO addressDto) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-        AddressType addressType = addressTypeRepository.findByName(addressDto.addressType).orElseThrow(() -> new EntityNotFoundException("AddressType not found"));
-        Country country = countryRepository.findByName(addressDto.country).orElseThrow(() -> new EntityNotFoundException("Country not found"));
-        City city = cityRepository.findByCountry_idAndName(country.getId(), addressDto.city).orElseThrow(() -> new EntityNotFoundException("City not found"));
+        AddressType addressType = addressTypeRepository.findByNameIgnoreCase(addressDto.addressType).orElseThrow(() -> new EntityNotFoundException("AddressType not found"));
+        Country country = countryRepository.findByNameIgnoreCase(addressDto.country).orElseThrow(() -> new EntityNotFoundException("Country not found"));
+        City city = cityRepository.findByCountry_idAndNameIgnoreCase(country.getId(), addressDto.city).orElseThrow(() -> new EntityNotFoundException("City not found"));
         Address address = new Address();
         address.setAddressLine(addressDto.addressLine);
         address.setCity(city);
