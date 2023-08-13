@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -65,9 +66,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponseDTO addAddress(Long id, AddressDTO addressDto) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-        AddressType addressType = addressTypeRepository.findByName(addressDto.addressType).orElseThrow(() -> new EntityNotFoundException("address type not found"));
-        Country country = countryRepository.findByName(addressDto.country).orElseThrow(() -> new EntityNotFoundException("country not found"));
-        City city = cityRepository.findByCountry_idAndName(country.getId(), addressDto.city).orElseThrow(() -> new EntityNotFoundException("city not found"));
+        AddressType addressType = addressTypeRepository.findByName(addressDto.addressType).orElseThrow(() -> new EntityNotFoundException("AddressType not found"));
+        Country country = countryRepository.findByName(addressDto.country).orElseThrow(() -> new EntityNotFoundException("Country not found"));
+        City city = cityRepository.findByCountry_idAndName(country.getId(), addressDto.city).orElseThrow(() -> new EntityNotFoundException("City not found"));
         Address address = new Address();
         address.setAddressLine(addressDto.addressLine);
         address.setCity(city);
@@ -76,6 +77,18 @@ public class CustomerServiceImpl implements CustomerService {
         address.setCustomer(customer);
         customerRepository.save(customer);
         return modelMapper.map(customer, CustomerResponseDTO.class);
+    }
+
+    @Override
+    @Transactional
+    public String deleteAddress(Long id, Long addressId) {
+        customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
+        if (addressRepository.deleteByIdAndCustomer_id(addressId, id) == 1) {
+            return "Address deleted successfully.";
+        } else {
+            return "Address not found or not belong to this customer";
+        }
+
     }
 
 }

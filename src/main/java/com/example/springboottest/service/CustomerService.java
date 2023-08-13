@@ -12,5 +12,7 @@ public interface CustomerService {
     List<CustomerResponseDTO> getCustomers();
     CustomerResponseDTO getCustomerById(Long id);
     CustomerResponseDTO addAddress(Long id, AddressDTO addressDto);
+    String deleteAddress(Long id, Long addressId);
+
 
 }

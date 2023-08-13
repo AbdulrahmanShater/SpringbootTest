@@ -4,6 +4,8 @@ import com.example.springboottest.dto.AddressDTO;
 import com.example.springboottest.dto.CustomerDTO;
 import com.example.springboottest.dto.CustomerResponseDTO;
 import com.example.springboottest.service.CustomerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,6 +38,11 @@ public class CustomerController {
     @PostMapping("/{id}/address")
     public CustomerResponseDTO addCustomerAddress(@PathVariable Long id, @Valid @RequestBody AddressDTO addressDto) {
         return customerService.addAddress(id, addressDto);
+    }
+
+    @DeleteMapping("/{id}/address/{addressId}")
+    public ResponseEntity<String> deleteAddress(@PathVariable Long id, @PathVariable Long addressId) {
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.deleteAddress(id, addressId));
     }
 
 }
