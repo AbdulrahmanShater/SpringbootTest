@@ -16,7 +16,7 @@ public interface CustomerService {
 
     CustomerResponseDTO addAddress(Long id, AddressDTO addressDto);
 
-    String deleteAddress(Long id, Long addressId);
+    void deleteAddress(Long id, Long addressId);
 
     List<CustomerResponseDTO> getCustomersByCity(String name);
     List<CustomerResponseDTO> getCustomersByPhone(String prefix);

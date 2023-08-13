@@ -1,6 +1,6 @@
 package com.example.springboottest.annotation;
 
-import com.example.springboottest.service.PhoneNumberValidator;
+import com.example.springboottest.service.impl.PhoneNumberValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
