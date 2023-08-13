@@ -12,10 +12,7 @@ public class PhoneNumberValidator implements ConstraintValidator<ValidPhoneNumbe
 
     @Override
     public boolean isValid(String phoneNumberStr, ConstraintValidatorContext context) {
-        // Implement your phone number validation logic here
-        // Return true if valid, false if not
-        // You can use regular expressions or external libraries like libphonenumber
-        // Example validation logic (simple regex-based validation):
+
         try {
             PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
 
