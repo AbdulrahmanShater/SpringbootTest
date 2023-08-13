@@ -12,6 +12,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(
+        uniqueConstraints = @UniqueConstraint(name = "uk_customer_address_line",columnNames = {"customer_id", "addressLine"}))
 public class Address {
     @Id
     @JsonIgnore
