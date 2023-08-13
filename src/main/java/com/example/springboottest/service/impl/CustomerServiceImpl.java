@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
             c.setAddresses(new ArrayList<>());
             return c;
         } catch (DataIntegrityViolationException ex) {
-            if (Objects.requireNonNull(ex.getMessage()).contains("uk_phoneNumber")) {
+            if (Objects.requireNonNull(ex.getMessage()).contains("uk_phonenumber")) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "phone number is exist", ex);
             } else if (Objects.requireNonNull(ex.getMessage()).contains("uk_email")) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email is exist", ex);
@@ -81,12 +81,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public String deleteAddress(Long id, Long addressId) {
+    public void deleteAddress(Long id, Long addressId) {
         customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-        if (addressRepository.deleteByIdAndCustomer_id(addressId, id) == 1) {
-            return "Address deleted successfully.";
-        } else {
-            return "Address not found or not belong to this customer";
+        if (addressRepository.deleteByIdAndCustomer_id(addressId, id) == 0) {
+            throw new EntityNotFoundException("Address not found Or Address not belongs for this Customer");
         }
 
     }
