@@ -2,6 +2,7 @@ package com.example.springboottest.service.impl;
 
 import com.example.springboottest.dto.CustomerDTO;
 import com.example.springboottest.dto.CustomerResponseDTO;
+import com.example.springboottest.exception.EntityNotFoundException;
 import com.example.springboottest.model.Customer;
 import com.example.springboottest.repository.CustomerRepository;
 import com.example.springboottest.service.CustomerService;
@@ -42,13 +43,14 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
     public List<CustomerResponseDTO> getCustomers() {
         return customerRepository.findAll().stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
     }
 
-
+    @Override
     public CustomerResponseDTO getCustomerById(Long id) {
-        return modelMapper.map(customerRepository.findById(id), CustomerResponseDTO.class);
+        return modelMapper.map(customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found")), CustomerResponseDTO.class);
     }
 
 }
