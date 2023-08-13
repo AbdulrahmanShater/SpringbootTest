@@ -19,6 +19,7 @@ public interface CustomerService {
     String deleteAddress(Long id, Long addressId);
 
     List<CustomerResponseDTO> getCustomersByCity(String name);
+    List<CustomerResponseDTO> getCustomersByPhone(String prefix);
 
 
 }

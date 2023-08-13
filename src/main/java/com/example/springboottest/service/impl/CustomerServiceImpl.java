@@ -96,4 +96,9 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findCustomersByCity(name).stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public List<CustomerResponseDTO> getCustomersByPhone(String prefix) {
+        return customerRepository.findByPhoneNumberStartsWith(prefix).stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
+    }
+
 }
