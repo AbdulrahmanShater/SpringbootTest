@@ -14,12 +14,16 @@ public class PhoneNumberValidator implements ConstraintValidator<ValidPhoneNumbe
     public boolean isValid(String phoneNumberStr, ConstraintValidatorContext context) {
 
         try {
+
+            if (phoneNumberStr.matches(".*[a-zA-Z].*")) {
+                return false;
+            }
             PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
-
             Phonenumber.PhoneNumber phoneNumber = phoneNumberUtil.parse(phoneNumberStr, null);
-            return phoneNumber != null && phoneNumberUtil.isValidNumber(phoneNumber);
-        } catch (NumberParseException ex) {
 
+            return phoneNumber != null && phoneNumberUtil.isValidNumber(phoneNumber);
+
+        } catch (NumberParseException ex) {
             return false;
         }
     }

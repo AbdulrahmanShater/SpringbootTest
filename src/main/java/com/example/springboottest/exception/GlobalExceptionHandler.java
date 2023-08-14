@@ -40,9 +40,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
         String msg;
         if (Objects.requireNonNull(ex.getMessage()).contains("uk_phonenumber")) {
-            msg = "phone number is exist";
+            msg = "phone number is exist.";
         } else if (Objects.requireNonNull(ex.getMessage()).contains("uk_email")) {
-            msg = "email is exist";
+            msg = "email is exist.";
+        } else if (Objects.requireNonNull(ex.getMessage()).contains("uk_customer_address_line")) {
+            msg = "addressLine already exist.";
         } else {
             msg = ex.getMessage();
         }

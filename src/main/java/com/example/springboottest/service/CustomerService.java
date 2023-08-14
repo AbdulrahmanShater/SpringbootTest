@@ -3,23 +3,22 @@ package com.example.springboottest.service;
 
 import com.example.springboottest.dto.AddressDTO;
 import com.example.springboottest.dto.CustomerDTO;
-import com.example.springboottest.dto.CustomerResponseDTO;
 
 import java.util.List;
 
 public interface CustomerService {
-    CustomerResponseDTO save(CustomerDTO customer);
+    CustomerDTO save(CustomerDTO customer);
 
-    List<CustomerResponseDTO> getCustomers();
+    List<CustomerDTO> getCustomers();
 
-    CustomerResponseDTO getCustomerById(Long id);
+    CustomerDTO getCustomerById(Long id);
 
-    CustomerResponseDTO addAddress(Long id, AddressDTO addressDto);
+    CustomerDTO addAddress(Long id, AddressDTO addressDto);
 
     void deleteAddress(Long id, Long addressId);
 
-    List<CustomerResponseDTO> getCustomersByCity(String name);
-    List<CustomerResponseDTO> getCustomersByPhone(String prefix);
+    List<CustomerDTO> getCustomersByCity(String name);
+    List<CustomerDTO> getCustomersByPhone(String prefix);
 
 
 }

@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,12 +17,12 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, length = 60)
+    @Column(unique = true, length = 60,nullable = false)
     private String name;
     @JsonIgnore
     @OneToMany
     @JoinColumn(name = "country_id")
-    private Set<City> cities;
+    private List<City> cities;
 
     @Override
     public String toString() {
