@@ -2,7 +2,6 @@ package com.example.springboottest.service.impl;
 
 import com.example.springboottest.dto.AddressDTO;
 import com.example.springboottest.dto.CustomerDTO;
-import com.example.springboottest.dto.CustomerResponseDTO;
 import com.example.springboottest.exception.EntityNotFoundException;
 import com.example.springboottest.model.*;
 import com.example.springboottest.repository.*;
@@ -39,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public CustomerResponseDTO save(CustomerDTO customerDTO) {
+    public CustomerDTO save(CustomerDTO customerDTO) {
         List<Address> addresses = new ArrayList<>();
         try {
             if (!customerDTO.getAddresses().isEmpty()) {
@@ -53,27 +52,27 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Customer customer = modelMapper.map(customerDTO, Customer.class);
         customer.setAddresses(addresses);
-        return modelMapper.map(customerRepository.save(customer), CustomerResponseDTO.class);
+        return modelMapper.map(customerRepository.save(customer), CustomerDTO.class);
 
     }
 
     @Override
-    public List<CustomerResponseDTO> getCustomers() {
-        return customerRepository.findAll().stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
+    public List<CustomerDTO> getCustomers() {
+        return customerRepository.findAll().stream().map(customer -> modelMapper.map(customer, CustomerDTO.class)).collect(Collectors.toList());
     }
 
     @Override
-    public CustomerResponseDTO getCustomerById(Long id) {
-        return modelMapper.map(customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found")), CustomerResponseDTO.class);
+    public CustomerDTO getCustomerById(Long id) {
+        return modelMapper.map(customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found")), CustomerDTO.class);
     }
 
     @Override
-    public CustomerResponseDTO addAddress(Long id, AddressDTO addressDto) {
+    public CustomerDTO addAddress(Long id, AddressDTO addressDto) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
         Address address = getAddressFromDTO(addressDto);
         customer.AddAddress(address);
         customerRepository.save(customer);
-        return modelMapper.map(customer, CustomerResponseDTO.class);
+        return modelMapper.map(customer, CustomerDTO.class);
     }
 
     @Override
@@ -87,13 +86,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerResponseDTO> getCustomersByCity(String name) {
-        return customerRepository.findCustomersByCity(name).stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
+    public List<CustomerDTO> getCustomersByCity(String name) {
+        return customerRepository.findCustomersByCity(name).stream().map(customer -> modelMapper.map(customer, CustomerDTO.class)).collect(Collectors.toList());
     }
 
     @Override
-    public List<CustomerResponseDTO> getCustomersByPhone(String prefix) {
-        return customerRepository.findByPhoneNumberStartsWith(prefix).stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
+    public List<CustomerDTO> getCustomersByPhone(String prefix) {
+        return customerRepository.findByPhoneNumberStartsWith(prefix).stream().map(customer -> modelMapper.map(customer, CustomerDTO.class)).collect(Collectors.toList());
     }
 
     private Address getAddressFromDTO(AddressDTO addressDTO) {
