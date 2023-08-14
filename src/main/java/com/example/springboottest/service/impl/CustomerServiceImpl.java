@@ -8,15 +8,13 @@ import com.example.springboottest.model.*;
 import com.example.springboottest.repository.*;
 import com.example.springboottest.service.CustomerService;
 import org.modelmapper.ModelMapper;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +25,8 @@ public class CustomerServiceImpl implements CustomerService {
     final CountryRepository countryRepository;
     final CustomerRepository customerRepository;
     final ModelMapper modelMapper;
+    @Autowired
+    private EntityManager entityManager;
 
     public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper, AddressRepository addressRepository, AddressTypeRepository addressTypeRepository, CityRepository cityRepository, CountryRepository countryRepository) {
         this.customerRepository = customerRepository;
@@ -38,19 +38,23 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponseDTO save(CustomerDTO customer) {
+    @Transactional
+    public CustomerResponseDTO save(CustomerDTO customerDTO) {
+        List<Address> addresses = new ArrayList<>();
         try {
-            CustomerResponseDTO c = modelMapper.map(customerRepository.save(modelMapper.map(customer, Customer.class)), CustomerResponseDTO.class);
-            c.setAddresses(new ArrayList<>());
-            return c;
-        } catch (DataIntegrityViolationException ex) {
-            if (Objects.requireNonNull(ex.getMessage()).contains("uk_phonenumber")) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "phone number is exist", ex);
-            } else if (Objects.requireNonNull(ex.getMessage()).contains("uk_email")) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email is exist", ex);
+            if (!customerDTO.getAddresses().isEmpty()) {
+                for (AddressDTO addressDTO : customerDTO.getAddresses()) {
+                    Address address = getAddressFromDTO(addressDTO);
+                    addressRepository.save(address);
+                    addresses.add(address);
+                }
             }
-            throw ex;
+        } catch (NullPointerException ignored) {
         }
+        Customer customer = modelMapper.map(customerDTO, Customer.class);
+        customer.setAddresses(addresses);
+        return modelMapper.map(customerRepository.save(customer), CustomerResponseDTO.class);
+
     }
 
     @Override
@@ -66,15 +70,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponseDTO addAddress(Long id, AddressDTO addressDto) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-        AddressType addressType = addressTypeRepository.findByNameIgnoreCase(addressDto.addressType).orElseThrow(() -> new EntityNotFoundException("AddressType not found"));
-        Country country = countryRepository.findByNameIgnoreCase(addressDto.country).orElseThrow(() -> new EntityNotFoundException("Country not found"));
-        City city = cityRepository.findByCountry_idAndNameIgnoreCase(country.getId(), addressDto.city).orElseThrow(() -> new EntityNotFoundException("City not found"));
-        Address address = new Address();
-        address.setAddressLine(addressDto.addressLine);
-        address.setCity(city);
-        address.setAddressType(addressType);
-        addressRepository.save(address);
-        address.setCustomer(customer);
+        Address address = getAddressFromDTO(addressDto);
+        customer.AddAddress(address);
         customerRepository.save(customer);
         return modelMapper.map(customer, CustomerResponseDTO.class);
     }
@@ -97,6 +94,18 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerResponseDTO> getCustomersByPhone(String prefix) {
         return customerRepository.findByPhoneNumberStartsWith(prefix).stream().map(customer -> modelMapper.map(customer, CustomerResponseDTO.class)).collect(Collectors.toList());
+    }
+
+    private Address getAddressFromDTO(AddressDTO addressDTO) {
+
+        AddressType addressType = addressTypeRepository.findByNameIgnoreCase(addressDTO.addressType).orElseThrow(() -> new EntityNotFoundException("AddressType not found"));
+        Country country = countryRepository.findByNameIgnoreCase(addressDTO.country).orElseThrow(() -> new EntityNotFoundException("Country not found"));
+        City city = cityRepository.findByCountry_idAndNameIgnoreCase(country.getId(), addressDTO.city).orElseThrow(() -> new EntityNotFoundException("City not found"));
+        Address address = new Address();
+        address.setAddressLine(addressDTO.addressLine);
+        address.setCity(city);
+        address.setAddressType(addressType);
+        return address;
     }
 
 }

@@ -20,7 +20,7 @@ public class City {
     @Column(length = 100,nullable = false)
     private String name;
     @ManyToOne
-    @JoinColumn(name = "country_id",nullable = false)
+    @JoinColumn(name = "country_id")
     private Country country;
     @JsonIgnore
     @OneToMany

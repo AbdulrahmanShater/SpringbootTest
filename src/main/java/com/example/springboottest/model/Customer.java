@@ -7,6 +7,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -33,9 +34,13 @@ public class Customer {
     @Column(nullable = false)
     private String email;
     @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private List<Address> addresses;
 
+    public void AddAddress(Address address) {
+        addresses.add(address);
+    }
 
     @Override
     public String toString() {

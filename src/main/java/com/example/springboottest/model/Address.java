@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Table(
-        uniqueConstraints = @UniqueConstraint(name = "uk_customer_address_line",columnNames = {"customer_id", "addressLine"}))
+        uniqueConstraints = @UniqueConstraint(name = "uk_customer_address_line", columnNames = {"customer_id", "addressLine"}))
 public class Address {
     @Id
     @JsonIgnore
@@ -22,20 +22,20 @@ public class Address {
 
 
     @ManyToOne
-    @JoinColumn(name = "city_id",nullable = false)
+    @JoinColumn(name = "city_id")
     private City city;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 100, nullable = false)
     private String addressLine;
 
     @JsonIgnore
 
     @ManyToOne
-    @JoinColumn(name = "customer_id",nullable = false)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "address_type_id",nullable = false)
+    @JoinColumn(name = "address_type_id")
     private AddressType addressType;
 
 
