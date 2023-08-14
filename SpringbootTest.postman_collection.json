@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "a1680acb-ae0f-4088-b15d-1efaca046cd5",
+		"name": "SpringbootTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29046097"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/customer",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:31:23 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Customers retrieved successfully.\",\n    \"data\": [\n        {\n            \"firstName\": \"Abdulrahman\",\n            \"lastName\": \"shater\",\n            \"phoneNumber\": \"+971503131842\",\n            \"email\": \"abdulrahmanshatter@gmail.com\",\n            \"addresses\": [\n                {\n                    \"addressType\": \"POB\",\n                    \"city\": \"Aleppo\",\n                    \"country\": \"Syria\",\n                    \"addressLine\": \"Aljamiliah\"\n                },\n                {\n                    \"addressType\": \"Work\",\n                    \"city\": \"Dubai\",\n                    \"country\": \"UAE\",\n                    \"addressLine\": \"Jumeirah\"\n                },\n                {\n                    \"addressType\": \"Home\",\n                    \"city\": \"Abu Dhabi\",\n                    \"country\": \"UAE\",\n                    \"addressLine\": \"Mecca St\"\n                }\n            ]\n        },\n        {\n            \"firstName\": \"example\",\n            \"lastName\": \"without addresses\",\n            \"phoneNumber\": \"+971503333333\",\n            \"email\": \"info@example.com\",\n            \"addresses\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/customer/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/customer/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:31:47 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Customer retrieved successfully.\",\n    \"data\": {\n        \"firstName\": \"Abdulrahman\",\n        \"lastName\": \"shater\",\n        \"phoneNumber\": \"+971503131842\",\n        \"email\": \"abdulrahmanshatter@gmail.com\",\n        \"addresses\": [\n            {\n                \"addressType\": \"POB\",\n                \"city\": \"Aleppo\",\n                \"country\": \"Syria\",\n                \"addressLine\": \"Aljamiliah\"\n            },\n            {\n                \"addressType\": \"Work\",\n                \"city\": \"Dubai\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Jumeirah\"\n            },\n            {\n                \"addressType\": \"Home\",\n                \"city\": \"Abu Dhabi\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Mecca St\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Abdulrahman\",\r\n    \"lastName\": \"shater\",\r\n    \"phoneNumber\": \"+971503131842\",\r\n    \"email\": \"abdulrahmanshatter@gmail.com\",\r\n    \"addresses\": [\r\n        {\r\n            \"addressType\": \"Home\",\r\n            \"city\": \"Abu Dhabi\",\r\n            \"country\": \"uae\",\r\n            \"addressLine\": \"Mecca St\"\r\n        },\r\n        {\r\n            \"addressType\": \"work\",\r\n            \"city\": \"dubai\",\r\n            \"country\": \"uae\",\r\n            \"addressLine\": \"Jumeirah\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "eample with addresses",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Abdulrahman\",\r\n    \"lastName\": \"shater\",\r\n    \"phoneNumber\": \"+971503131842\",\r\n    \"email\": \"abdulrahmanshatter@gmail.com\",\r\n    \"addresses\": [\r\n        {\r\n            \"addressType\": \"Home\",\r\n            \"city\": \"Abu Dhabi\",\r\n            \"country\": \"uae\",\r\n            \"addressLine\": \"Mecca St\"\r\n        },\r\n        {\r\n            \"addressType\": \"work\",\r\n            \"city\": \"dubai\",\r\n            \"country\": \"uae\",\r\n            \"addressLine\": \"Jumeirah\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/customer",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customer"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:21:40 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Customer created successfully.\",\n    \"data\": {\n        \"firstName\": \"Abdulrahman\",\n        \"lastName\": \"shater\",\n        \"phoneNumber\": \"+971503131842\",\n        \"email\": \"abdulrahmanshatter@gmail.com\",\n        \"addresses\": [\n            {\n                \"addressType\": \"Home\",\n                \"city\": \"Abu Dhabi\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Mecca St\"\n            },\n            {\n                \"addressType\": \"Work\",\n                \"city\": \"Dubai\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Jumeirah\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "example without addresses",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"example\",\r\n    \"lastName\": \"without addresses\",\r\n    \"phoneNumber\": \"+971503333333\",\r\n    \"email\": \"info@example.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/customer",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customer"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:29:53 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Customer created successfully.\",\n    \"data\": {\n        \"firstName\": \"example\",\n        \"lastName\": \"without addresses\",\n        \"phoneNumber\": \"+971503333333\",\n        \"email\": \"info@example.com\",\n        \"addresses\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "add Address To Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"addressType\": \"pob\",\r\n    \"city\": \"aleppo\",\r\n    \"country\": \"syria\",\r\n    \"addressLine\": \"Aljamiliah\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/customer/1/address",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"1",
+								"address"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"addressType\": \"pob\",\r\n    \"city\": \"aleppo\",\r\n    \"country\": \"syria\",\r\n    \"addressLine\": \"Aljamiliah\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/customer/1/address",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"1",
+										"address"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:26:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Address added successfully.\",\n    \"data\": {\n        \"firstName\": \"Abdulrahman\",\n        \"lastName\": \"shater\",\n        \"phoneNumber\": \"+971503131842\",\n        \"email\": \"abdulrahmanshatter@gmail.com\",\n        \"addresses\": [\n            {\n                \"addressType\": \"Work\",\n                \"city\": \"Dubai\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Jumeirah\"\n            },\n            {\n                \"addressType\": \"Home\",\n                \"city\": \"Abu Dhabi\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Mecca St\"\n            },\n            {\n                \"addressType\": \"POB\",\n                \"city\": \"Aleppo\",\n                \"country\": \"Syria\",\n                \"addressLine\": \"Aljamiliah\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete address from customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer/4/address/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"4",
+								"address",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/customer/1/address/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"1",
+										"address",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:33:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "get By City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/city/Abu dhabi",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"city",
+								"Abu dhabi"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/city/dubai",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"city",
+										"dubai"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:33:28 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"firstName\": \"Abdulrahman\",\n        \"lastName\": \"shater\",\n        \"phoneNumber\": \"+971503131842\",\n        \"email\": \"abdulrahmanshatter@gmail.com\",\n        \"addresses\": [\n            {\n                \"addressType\": \"POB\",\n                \"city\": \"Aleppo\",\n                \"country\": \"Syria\",\n                \"addressLine\": \"Aljamiliah\"\n            },\n            {\n                \"addressType\": \"Work\",\n                \"city\": \"Dubai\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Jumeirah\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getByphone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/phone/+9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"phone",
+								"+9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/v1/phone/+971503",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"phone",
+										"+971503"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Aug 2023 15:34:17 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"firstName\": \"Abdulrahman\",\n        \"lastName\": \"shater\",\n        \"phoneNumber\": \"+971503131842\",\n        \"email\": \"abdulrahmanshatter@gmail.com\",\n        \"addresses\": [\n            {\n                \"addressType\": \"POB\",\n                \"city\": \"Aleppo\",\n                \"country\": \"Syria\",\n                \"addressLine\": \"Aljamiliah\"\n            },\n            {\n                \"addressType\": \"Work\",\n                \"city\": \"Dubai\",\n                \"country\": \"UAE\",\n                \"addressLine\": \"Jumeirah\"\n            }\n        ]\n    },\n    {\n        \"firstName\": \"example\",\n        \"lastName\": \"without addresses\",\n        \"phoneNumber\": \"+971503333333\",\n        \"email\": \"info@example.com\",\n        \"addresses\": []\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}
