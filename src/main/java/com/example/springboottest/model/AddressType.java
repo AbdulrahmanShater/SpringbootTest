@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,7 +21,7 @@ public class AddressType {
     @JsonIgnore
     @OneToMany
     @JoinColumn(name = "address_type_id")
-    private Set<Address> addresses;
+    private List<Address> addresses;
 
 
     @Override

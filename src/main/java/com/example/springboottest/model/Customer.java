@@ -7,9 +7,8 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,7 +34,7 @@ public class Customer {
     private String email;
     @OneToMany
     @JoinColumn(name = "customer_id")
-    private Set<Address> addresses;
+    private List<Address> addresses;
 
 
     @Override
