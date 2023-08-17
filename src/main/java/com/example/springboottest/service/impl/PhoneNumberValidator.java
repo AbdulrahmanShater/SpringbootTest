@@ -14,7 +14,6 @@ public class PhoneNumberValidator implements ConstraintValidator<ValidPhoneNumbe
     public boolean isValid(String phoneNumberStr, ConstraintValidatorContext context) {
 
         try {
-
             if (phoneNumberStr.matches(".*[a-zA-Z].*")) {
                 return false;
             }
