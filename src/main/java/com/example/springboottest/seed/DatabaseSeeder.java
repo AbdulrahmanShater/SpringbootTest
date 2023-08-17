@@ -6,7 +6,6 @@ import com.example.springboottest.model.Country;
 import com.example.springboottest.repository.AddressTypeRepository;
 import com.example.springboottest.repository.CityRepository;
 import com.example.springboottest.repository.CountryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

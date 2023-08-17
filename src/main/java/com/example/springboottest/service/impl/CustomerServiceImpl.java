@@ -7,10 +7,8 @@ import com.example.springboottest.model.*;
 import com.example.springboottest.repository.*;
 import com.example.springboottest.service.CustomerService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +22,6 @@ public class CustomerServiceImpl implements CustomerService {
     final CountryRepository countryRepository;
     final CustomerRepository customerRepository;
     final ModelMapper modelMapper;
-    @Autowired
-    private EntityManager entityManager;
 
     public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper, AddressRepository addressRepository, AddressTypeRepository addressTypeRepository, CityRepository cityRepository, CountryRepository countryRepository) {
         this.customerRepository = customerRepository;
