@@ -14,9 +14,6 @@ This project is a RESTful API built using Spring Boot that provides CRUD operati
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
 - [Tests](#tests)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ## Technologies Used
 
@@ -57,7 +54,20 @@ To interact with the API, you can use tools like curl, Postman, or any API clien
 1. Create New Customer:
     ```sh
     POST /customer
-    Request Body: {"name": "John Doe", "addresses": [{"addressType": "Home", "country": "USA", "city": "New York", "addressLine": "123 Main St"}]}
+    Request Body: {
+    "firstName": "Abdulrahman",
+    "lastName": "shater",
+    "phoneNumber": "+971503131842",
+    "email": "abdulrahmanshatter@gmail.com",
+    "addresses": [
+        {
+            "addressType": "Home",
+            "city": "Abu Dhabi",
+            "country": "uae",
+            "addressLine": "Mecca St"
+        }
+    ]
+    }
 2. Retrieve all Customers:
     ```sh
     GET /customer    
@@ -67,13 +77,18 @@ To interact with the API, you can use tools like curl, Postman, or any API clien
 4. Add an address to a customer:
     ```sh
     POST /customer/{id}/address
-    Request Body: {"addressType": "Work", "country": "USA", "city": "Los Angeles", "addressLine": "456 Elm St"}
+    Request Body:{
+            "addressType": "Home",
+            "city": "Abu Dhabi",
+            "country": "uae",
+            "addressLine": "Mecca St"
+        }
     
 5. Delete an address from a customer:
     ```sh
     DELETE /customer/{id}/address/{addressId}
 ### API Documentation
-Postman API documentation is availible in postman dirictory in project.
+Postman [API documentation](https://github.com/AbdulrahmanShater/SpringbootTest/blob/master/src/postman/README.md) is available in postman directory in project
 ## Tests
 1. tests run :
    ```sh
