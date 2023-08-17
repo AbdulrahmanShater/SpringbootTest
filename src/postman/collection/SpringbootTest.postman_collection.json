@@ -15,14 +15,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/customer",
+							"raw": "{{base_url}}/customer",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"customer"
 							]
 						}
@@ -34,14 +31,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/api/v1/customer",
+									"raw": "{{base_url}}/customer",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"customer"
 									]
 								}
@@ -74,14 +68,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/customer/2",
+							"raw": "{{base_url}}/customer/2",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"customer",
 								"2"
 							]
@@ -94,14 +85,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/api/v1/customer/1",
+									"raw": "{{base_url}}/customer/1",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"customer",
 										"1"
 									]
@@ -144,14 +132,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/customer",
+							"raw": "{{base_url}}/customer",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"customer"
 							]
 						}
@@ -172,14 +157,11 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/api/v1/customer",
+									"raw": "{{base_url}}/customer",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"customer"
 									]
 								}
@@ -219,14 +201,11 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/api/v1/customer",
+									"raw": "{{base_url}}/customer",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"customer"
 									]
 								}
@@ -268,14 +247,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/customer/1/address",
+							"raw": "{{base_url}}/customer/1/address",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"customer",
 								"1",
 								"address"
@@ -298,14 +274,11 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/api/v1/customer/1/address",
+									"raw": "{{base_url}}/customer/1/address",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"customer",
 										"1",
 										"address"
@@ -340,16 +313,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/customer/4/address/3",
+							"raw": "{{base_url}}/customer/1/address/1",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"customer",
-								"4",
+								"1",
 								"address",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -360,14 +332,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/api/v1/customer/1/address/1",
+									"raw": "{{base_url}}/customer/1/address/1",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"customer",
 										"1",
 										"address",
@@ -395,16 +364,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/city/Abu dhabi",
+							"raw": "{{base_url}}/city/dubai",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"city",
-								"Abu dhabi"
+								"dubai"
 							]
 						}
 					},
@@ -415,14 +381,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/api/v1/city/dubai",
+									"raw": "{{base_url}}/city/dubai",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"city",
 										"dubai"
 									]
@@ -456,16 +419,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/phone/+9",
+							"raw": "{{base_url}}/phone/+971503",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"phone",
-								"+9"
+								"+971503"
 							]
 						}
 					},
@@ -476,14 +436,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/api/v1/phone/+971503",
+									"raw": "{{base_url}}/phone/+971503",
 									"host": [
-										"localhost"
+										"{{base_url}}"
 									],
-									"port": "8080",
 									"path": [
-										"api",
-										"v1",
 										"phone",
 										"+971503"
 									]
