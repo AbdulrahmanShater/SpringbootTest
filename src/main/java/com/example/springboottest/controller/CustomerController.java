@@ -40,18 +40,19 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customer/{id}/address/{addressId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAddress(@PathVariable Long id, @PathVariable Long addressId) {
+    public ResponseEntity<Void> deleteAddress(@PathVariable Long id, @PathVariable Long addressId) {
         customerService.deleteAddress(id, addressId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
     @GetMapping("city/{name}")
-    public List<CustomerDTO> getCustomerByCities(@PathVariable String name) {
-        return customerService.getCustomersByCity(name);
+    public ResponseEntity<DataResponse<List<CustomerDTO>>> getCustomerByCities(@PathVariable String name) {
+        return ResponseEntity.status(HttpStatus.OK).body(new DataResponse<>("success", "Customers retrieved successfully.", customerService.getCustomersByCity(name)));
     }
 
     @GetMapping("phone/{prefix}")
-    public List<CustomerDTO> getByPhone(@PathVariable String prefix) {
-        return customerService.getCustomersByPhone(prefix);
+    public ResponseEntity<DataResponse<List<CustomerDTO>>> getByPhone(@PathVariable String prefix) {
+        return ResponseEntity.status(HttpStatus.OK).body(new DataResponse<>("success", "Customers retrieved successfully.", customerService.getCustomersByPhone(prefix)));
+
     }
 }
